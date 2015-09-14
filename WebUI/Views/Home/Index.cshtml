@@ -48,7 +48,7 @@
 </table>
 @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o
     .DisplayTemplate("Bootstrap3Pagination")
-    .MaxNumOfPages(14)
+    .MaxNumOfPages(6)
     .AlwaysAddFirstPageNumber())
 <div>
     Showing @Model.ItemStart to @Model.ItemEnd of @Model.TotalItemCount records

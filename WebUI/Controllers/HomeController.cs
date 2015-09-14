@@ -29,6 +29,7 @@ namespace WebUI.Controllers
                 model = await _templateService.GetByIdAsync(id);
                 return View("AddOrUpdate", model);
             }
+
             model.CountriesDdl = await _templateService.GetCountriesDropdownAsync();
             return View(model);
         }
