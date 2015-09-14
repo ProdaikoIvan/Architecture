@@ -1,0 +1,55 @@
+﻿@using Extensions.Pager
+@model IPagedList<ViewModels.Entities.TemplateEntityViewModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+    @Html.ActionLink("Create new", "AddOrUpdate", null, new {@class = "btn btn-default", role = "button"})
+</p>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Date and time</th>
+        <th>Country</th>
+        <th>Is active?</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th scope="row">@item.Id</th>
+            <td>@item.Name</td>
+            <td>@item.DateTime</td>
+            <td>@item.Country.Name</td>
+            <td>@item.IsActive</td>
+            <td style="width: 1%">
+                <a href="@Url.Action("AddOrUpdate", new {id = item.Id})" data-toggle="tooltip" data-placement="top"
+                   title="Edit" class="btn btn-primary btn-xs">
+                    <span class="glyphicon glyphicon-edit"></span>
+                </a>
+            </td>
+            <td style="width: 1%">
+                <a href="@Url.Action("Delete", new {id = item.Id})" data-toggle="tooltip" data-placement="top"
+                   title="Delete" class="btn btn-danger btn-xs">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+@Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o
+    .DisplayTemplate("Bootstrap3Pagination")
+    .MaxNumOfPages(14)
+    .AlwaysAddFirstPageNumber())
+<div>
+    Showing @Model.ItemStart to @Model.ItemEnd of @Model.TotalItemCount records
+</div>

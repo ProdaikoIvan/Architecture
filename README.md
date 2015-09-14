@@ -1,2 +1,2 @@
 # Architecture
-Architecture for ASP MVC application
+Template architecture for ASP MVC
