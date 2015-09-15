@@ -11,6 +11,11 @@ namespace Extensions.Pager
 
         public PagedList(IQueryable<T> source, int index, int pageSize, int totalCount)
         {
+            if (totalCount <= pageSize)
+            {
+                AddRange(source); return;
+            }
+
             if (index < 0)
                 throw new ArgumentOutOfRangeException(nameof(index), "Value can not be below 0.");
             if (pageSize < 1)
@@ -50,11 +55,7 @@ namespace Extensions.Pager
         public int PageCount { get; }
         public int TotalItemCount { get; }
         public int PageIndex { get; }
-
-        public int PageNumber
-        {
-            get { return PageIndex + 1; }
-        }
+        public int PageNumber => PageIndex + 1;
 
         public int PageSize { get; }
         public int ItemStart { get; }

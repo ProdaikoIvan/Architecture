@@ -42,11 +42,6 @@ namespace DAL.Repository
             return await _context.FindAsync(id);
         }
 
-        //public void AddOrUpdate(TEntity entity)
-        //{
-        //    _context.AddOrUpdate(entity);
-        //}
-
         public async Task AddOrUpdateAsync(TEntity entity)
         {
             await Task.Factory.StartNew(() => _context.AddOrUpdate(entity));
