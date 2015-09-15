@@ -27,7 +27,7 @@ namespace BLL.Service
             var templateEntities = await _unitOfWork.Repository<TemplateEntity>().GetAsync(orderBy: x => x.OrderBy(o => o.Name).Skip(currentPageIndex * 3).Take(pageSize), includeProperties: x => x.Country);
             var count = await _unitOfWork.Repository<TemplateEntity>().CountAsync();
 
-            return templateEntities.ToViewModel().ToPagedList(currentPageIndex, pageSize, count);
+            return templateEntities.ToViewModelAsync().Result.ToPagedList(currentPageIndex, pageSize, count);
         }
 
         public async Task<TemplateEntityViewModel> GetByIdAsync(int id)
@@ -41,8 +41,7 @@ namespace BLL.Service
         public async Task<IEnumerable<SelectListItem>> GetCountriesDropdownAsync()
         {
             var countries = await _unitOfWork.Repository<Country>().GetAsync(orderBy: x => x.OrderBy(o => o.Name));
-
-            return countries.ToSelectList(x => x.Name, x => x.Id.ToString());
+            return await countries.ToSelectListAsync(x => x.Name, x => x.Id.ToString());
         }
 
         public async Task<bool> AddOrUpdateAsync(TemplateEntityViewModel template)

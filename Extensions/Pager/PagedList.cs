@@ -7,9 +7,7 @@ namespace Extensions.Pager
     public class PagedList<T> : List<T>, IPagedList<T>
     {
         public PagedList(IEnumerable<T> source, int index, int pageSize, int totalCount)
-            : this(source.AsQueryable(), index, pageSize, totalCount)
-        {
-        }
+        : this(source.AsQueryable(), index, pageSize, totalCount) { }
 
         public PagedList(IQueryable<T> source, int index, int pageSize, int totalCount)
         {
@@ -26,23 +24,23 @@ namespace Extensions.Pager
             PageSize = pageSize;
             PageIndex = index;
             TotalItemCount = totalCount;
-            PageCount = TotalItemCount > 0 ? (int) Math.Ceiling(TotalItemCount/(double) PageSize) : 0;
+            PageCount = TotalItemCount > 0 ? (int)Math.Ceiling(TotalItemCount / (double)PageSize) : 0;
 
             HasPreviousPage = (PageIndex > 0);
             HasNextPage = (PageIndex < (PageCount - 1));
             IsFirstPage = (PageIndex <= 0);
             IsLastPage = (PageIndex >= (PageCount - 1));
 
-            ItemStart = PageIndex*PageSize + 1;
-            ItemEnd = Math.Min(PageIndex*PageSize + PageSize, TotalItemCount);
+            ItemStart = PageIndex * PageSize + 1;
+            ItemEnd = Math.Min(PageIndex * PageSize + PageSize, TotalItemCount);
 
             if (TotalItemCount <= 0)
                 return;
 
-            var realTotalPages = (int) Math.Ceiling(realTotalCount/(double) PageSize);
+            var realTotalPages = (int)Math.Ceiling(realTotalCount / (double)PageSize);
 
             if (realTotalCount < TotalItemCount && realTotalPages <= PageIndex)
-                AddRange(source.Skip((realTotalPages - 1)*PageSize).Take(PageSize));
+                AddRange(source.Skip((realTotalPages - 1) * PageSize).Take(PageSize));
             else
                 AddRange(source);
         }

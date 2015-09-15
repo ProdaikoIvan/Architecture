@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using DAL.Models;
 using ViewModels.Entities;
@@ -21,16 +22,16 @@ namespace BLL.Mappers
             };
         }
 
-        public static IEnumerable<TemplateEntityViewModel> ToViewModel(this IEnumerable<TemplateEntity> templateEntity)
+        public static Task<List<TemplateEntityViewModel>> ToViewModelAsync(this IEnumerable<TemplateEntity> templateEntity)
         {
-            return templateEntity.Select(entity => new TemplateEntityViewModel
+            return Task.Run(() => templateEntity.Select(entity => new TemplateEntityViewModel
             {
                 Id = entity.Id,
                 DateTime = entity.DateTime,
                 Name = entity.Name,
                 IsActive = entity.IsActive,
                 Country = entity.Country
-            }).ToList();
+            }).ToList());
         }
 
         public static TemplateEntity ToModel(this TemplateEntityViewModel templateEntity)
