@@ -21,10 +21,10 @@ namespace BLL.Service
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<IPagedList<TemplateEntityViewModel>> GetAsync(int? page, int pageSize)
+        public async Task<IPagedList<TemplateEntityViewModel>> GetWithPagingAsync(int? page, int pageSize)
         {
             var currentPageIndex = page - 1 ?? 0;
-            var templateEntities = await _unitOfWork.Repository<TemplateEntity>().GetAsync(orderBy: x => x.OrderBy(o => o.Name).Skip(currentPageIndex * 3).Take(pageSize), includeProperties: x => x.Country);
+            var templateEntities = await _unitOfWork.Repository<TemplateEntity>().GetAsync(orderBy: x => x.OrderBy(o => o.Name).Skip(currentPageIndex * pageSize).Take(pageSize), includeProperties: x => x.Country);
             var entity = await templateEntities.ToViewModelAsync();
             var count = await _unitOfWork.Repository<TemplateEntity>().CountAsync();
 

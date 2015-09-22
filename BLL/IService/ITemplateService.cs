@@ -8,7 +8,7 @@ namespace BLL.IService
 {
     public interface ITemplateService
     {
-        Task<IPagedList<TemplateEntityViewModel>> GetAsync(int? page, int pageSize);
+        Task<IPagedList<TemplateEntityViewModel>> GetWithPagingAsync(int? page, int pageSize);
         Task<IEnumerable<SelectListItem>> GetCountriesDropdownAsync();
         Task<TemplateEntityViewModel> GetByIdAsync(int id);
         Task<bool> AddOrUpdateAsync(TemplateEntityViewModel template);

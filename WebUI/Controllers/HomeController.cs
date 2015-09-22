@@ -16,7 +16,7 @@ namespace WebUI.Controllers
 
         public async Task<ActionResult> Index(int? page)
         {
-            var model = await _templateService.GetAsync(page, 3);
+            var model = await _templateService.GetWithPagingAsync(page, 3);
             return View(model);
         }
 
