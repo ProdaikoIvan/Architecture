@@ -204,6 +204,7 @@
     <Content Include="Content\Scripts\locales\bootstrap-datepicker.uk.min.js" />
     <Content Include="Content\Scripts\locales\bootstrap-datepicker.vi.min.js" />
     <Content Include="Content\Scripts\locales\bootstrap-datepicker.zh-TW.min.js" />
+    <Content Include="Content\Scripts\main.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

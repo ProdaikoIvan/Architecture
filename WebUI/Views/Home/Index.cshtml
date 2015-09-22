@@ -46,11 +46,17 @@
         }
     </tbody>
 </table>
+@if (!Model.Any())
+{
+    <div class="text-center">
+        <h2>No data</h2>
+    </div>
+}
 @if (Model.TotalItemCount > 3)
 {
     @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o
         .DisplayTemplate("Bootstrap3Pagination")
-        .MaxNumOfPages(6)
+        .MaxNumOfPages(5)
         .AlwaysAddFirstPageNumber())
     <div>
         Showing @Model.ItemStart to @Model.ItemEnd of @Model.TotalItemCount records

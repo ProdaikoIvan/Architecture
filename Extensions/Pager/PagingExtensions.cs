@@ -24,6 +24,11 @@ namespace Extensions.Pager
             return new PagedList<T>(source, pageIndex, pageSize, totalCount);
         }
 
+        public static IPagedList<T> ToPagedList<T>(this IEnumerable<T> source)
+        {
+            return new PagedList<T>(source);
+        }
+
         #endregion
 
         #region HtmlHelper extensions

@@ -42,7 +42,7 @@ namespace WebUI.Controllers
                 await _templateService.AddOrUpdateAsync(templateEntity);
                 return RedirectToAction("Index");
             }
-
+            templateEntity.CountriesDdl = await _templateService.GetCountriesDropdownAsync();
             return View(templateEntity);
         }
 

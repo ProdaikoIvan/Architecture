@@ -24,7 +24,7 @@ namespace Extensions.Pager
 
             if (!string.IsNullOrEmpty(PagerOptions.DisplayTemplate))
             {
-                var templatePath = string.Format("DisplayTemplates/{0}", PagerOptions.DisplayTemplate);
+                var templatePath = $"DisplayTemplates/{PagerOptions.DisplayTemplate}";
                 return _htmlHelper.Partial(templatePath, model).ToHtmlString();
             }
             var sb = new StringBuilder();
@@ -297,7 +297,7 @@ namespace Extensions.Pager
             var virtualPathForArea = RouteTable.Routes.GetVirtualPathForArea(viewContext.RequestContext,
                 pageLinkValueDictionary);
 
-            return virtualPathForArea == null ? null : virtualPathForArea.VirtualPath;
+            return virtualPathForArea?.VirtualPath;
         }
 
         #region Pager Members

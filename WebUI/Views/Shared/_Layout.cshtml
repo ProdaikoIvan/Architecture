@@ -1,50 +1,38 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width"/>
+    <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/bootstrap")
-    <meta name="description" content="The description of my page"/>
+    <meta name="description" content="The description of my page" />
 </head>
 <body>
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="@Url.Action("Index", "Home")">Test project</a>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")">Test project</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+            </div><!--/.nav-collapse -->
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
-        </div><!--/.nav-collapse -->
+    </nav>
+    <div class="container">
+        @RenderBody()
     </div>
-</nav>
-<div class="container">
-    @RenderBody()
-</div>
-<footer class="footer">
-    <div class="container text-center">
-        <p class="text-muted">
-            <a href="https://vk.com/etonuke">Nuke</a> © @DateTime.Now.Year
-        </p>
-    </div>
-</footer>
-@Scripts.Render("~/Bundles/jquery")
-@Scripts.Render("~/Bundles/bootstrap")
-<script src="~/Content/Scripts/jquery/jquery.validate.min.js"></script>
-<script src="~/Content/Scripts/jquery/jquery.validate.unobtrusive.min.js"></script>
-<script src="~/Content/Scripts/jquery/jquery.validate.unobtrusive.bootstrap.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('[data-toggle="tooltip"]').tooltip();
-        $('#DateTime').datepicker({
-            format: 'yyyy.mm.dd',
-            todayHighlight: true
-        });
-    });
-</script>
+    <footer class="footer">
+        <div class="container text-center">
+            <p class="text-muted">
+                <a href="https://vk.com/etonuke">Nuke</a> © @DateTime.Now.Year
+            </p>
+        </div>
+    </footer>
+    @Scripts.Render("~/Bundles/scripts")
+    @RenderSection("datePicker", false)
 </body>
 </html>

@@ -74,6 +74,7 @@
     <Compile Include="Pager\PagingExtensions.cs" />
     <Compile Include="Pager\RouteValueDictionaryExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebExtensions\FileExtensions.cs" />
     <Compile Include="WebExtensions\HttpContextExtensions.cs" />
     <Compile Include="WebExtensions\SelectListExtensions.cs" />
     <Compile Include="WebExtensions\StringExtensions.cs" />

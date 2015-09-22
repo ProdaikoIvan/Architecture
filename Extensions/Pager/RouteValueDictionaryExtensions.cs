@@ -17,7 +17,7 @@ namespace Extensions.Pager
                     var index = 0;
                     foreach (var val in vals)
                     {
-                        newRv.Add(string.Format("{0}[{1}]", key, index), val);
+                        newRv.Add($"{key}[{index}]", val);
                         index++;
                     }
                 }

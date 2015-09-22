@@ -9,6 +9,15 @@ namespace DAL.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {
+        #region Fields
+
+        private bool _disposed;
+        private readonly DataContext _context;
+        private Dictionary<string, object> _repositories;
+        public static InMemoryCache Cache;
+
+        #endregion
+
         public UnitOfWork()
         {
             Cache = new InMemoryCache();
@@ -37,15 +46,6 @@ namespace DAL.UnitOfWork
         {
             await _context.SaveChangesAsync();
         }
-
-        #region Fields
-
-        private bool _disposed;
-        private readonly DataContext _context;
-        private Dictionary<string, object> _repositories;
-        public static InMemoryCache Cache;
-
-        #endregion
 
         #region Dispose
 

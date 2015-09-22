@@ -61,6 +61,7 @@
     <Compile Include="Repository\GenericRepository.cs" />
     <Compile Include="Repository\IGenericRepository.cs" />
     <Compile Include="UnitOfWork\IUnitOfWork.cs" />
+    <Compile Include="UnitOfWork\SingletonFactory.cs" />
     <Compile Include="UnitOfWork\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>

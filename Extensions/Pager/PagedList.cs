@@ -9,13 +9,13 @@ namespace Extensions.Pager
         public PagedList(IEnumerable<T> source, int index, int pageSize, int totalCount)
         : this(source.AsQueryable(), index, pageSize, totalCount) { }
 
+        public PagedList(IEnumerable<T> source)
+        {
+            AddRange(source);
+        }
+
         public PagedList(IQueryable<T> source, int index, int pageSize, int totalCount)
         {
-            if (totalCount <= pageSize)
-            {
-                AddRange(source); return;
-            }
-
             if (index < 0)
                 throw new ArgumentOutOfRangeException(nameof(index), "Value can not be below 0.");
             if (pageSize < 1)

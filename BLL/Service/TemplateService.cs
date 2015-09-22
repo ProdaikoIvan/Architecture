@@ -25,9 +25,10 @@ namespace BLL.Service
         {
             var currentPageIndex = page - 1 ?? 0;
             var templateEntities = await _unitOfWork.Repository<TemplateEntity>().GetAsync(orderBy: x => x.OrderBy(o => o.Name).Skip(currentPageIndex * 3).Take(pageSize), includeProperties: x => x.Country);
+            var entity = await templateEntities.ToViewModelAsync();
             var count = await _unitOfWork.Repository<TemplateEntity>().CountAsync();
 
-            return templateEntities.ToViewModelAsync().Result.ToPagedList(currentPageIndex, pageSize, count);
+            return count > pageSize ? entity.ToPagedList(currentPageIndex, pageSize, count) : entity.ToPagedList();
         }
 
         public async Task<TemplateEntityViewModel> GetByIdAsync(int id)
